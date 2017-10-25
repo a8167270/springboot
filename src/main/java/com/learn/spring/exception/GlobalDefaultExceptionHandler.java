@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class GlobalDefaultExceptionHandler {
 
 	@ExceptionHandler(value = Exception.class)
-
 	public void defaultErrorHandler(HttpServletRequest req, Exception e) {
 
 		// // If the exception is annotated with @ResponseStatus rethrow it and
