@@ -5,12 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Component;
 
 import com.learn.spring.bean.Demo;
 
-@Component
 @Mapper
 public interface DemoMapper {
 	
@@ -21,7 +20,8 @@ public interface DemoMapper {
 	List<Demo> getAllDemo();
 	
     @Insert("INSERT INTO user(name) VALUES(#{name})")
-    void insert(Demo user);
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    int insert(Demo user);
     
     @Delete("delete from user where id = #{id}")
     void delete(long id);

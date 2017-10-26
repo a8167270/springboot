@@ -10,15 +10,11 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
 import org.apache.catalina.filters.RemoteIpFilter;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import lombok.extern.log4j.Log4j;
-
 @Configuration
-@Log4j
 public class WebConfiguration {
 
 	@Bean
@@ -47,9 +43,8 @@ public class WebConfiguration {
 		@Override
 		public void doFilter(ServletRequest srequest, ServletResponse sresponse, FilterChain filterChain)
 				throws IOException, ServletException {
-			HttpServletRequest request = (HttpServletRequest) srequest;
-			System.out.println("this is MyFilter,url :"+request.getRequestURI());
-			log.info("this is log message");
+			//HttpServletRequest request = (HttpServletRequest) srequest;
+			//System.out.println("this is MyFilter,url :"+request.getRequestURI());
 			filterChain.doFilter(srequest, sresponse);
 			
 		}

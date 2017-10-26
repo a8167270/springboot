@@ -29,8 +29,8 @@ public class DemoService {
 	}
 
 	@Transactional(rollbackFor = Exception.class)
-	public void inserUser(String name) {
-		demoMapper.insert(new Demo(name));
+	public void inserUser(Demo demo) {
+		demoMapper.insert(demo);
 	}
 
 	@Transactional(rollbackFor = Exception.class)
