@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.spring.dao.UserDao">
+    <select id="getDemoById" resultType="User">
+        select * from user where id = #{id}
+    </select>
+
+    <select id="getAllDemo" resultType="User">
+        select * from user
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+        insert into user(name,pwd,role) values(#{name},#{pwd},#{role,typeHandler=org.apache.ibatis.type.EnumTypeHandler})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM  user where id = #{id}
+    </delete>
+
+    <update id="updateUser">
+        UPDATE user set name=#{name} WHERE id = #{id}
+    </update>
+
+    <select id="getUserByName" resultType="User">
+        select * from user where name = #{name}
+    </select>
+    <select id="getRoleByName" resultType="String">
+        select role from user where name = #{name}
+    </select>
+</mapper>
