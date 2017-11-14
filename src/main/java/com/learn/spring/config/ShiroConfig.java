@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author shawn
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -46,7 +49,8 @@ public class ShiroConfig {
         RedisManager redisManager = new RedisManager();
         redisManager.setHost(host);
         redisManager.setPort(port);
-        redisManager.setExpire(1800);// 配置过期时间
+        // 配置过期时间
+        redisManager.setExpire(1800);
         redisManager.setDatabase(1);
 
         redisManager.setTimeout(1800);

@@ -1,5 +1,6 @@
 package com.learn.spring.controller;
 
+import com.learn.spring.config.MyShiroRealm;
 import com.learn.spring.entity.Result;
 import com.learn.spring.entity.User;
 import com.learn.spring.enums.ResultCode;
@@ -10,7 +11,9 @@ import io.swagger.annotations.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +31,9 @@ import static org.springframework.http.HttpStatus.*;
 @Api("sys")
 @Slf4j
 public class System {
+
+    @Autowired
+    MyShiroRealm myShiroRealm;
 
     @ApiOperation(value = "获取用户", notes = "根据url的id来获取对象", response = User.class)
     @ApiResponses(value = {
@@ -74,8 +80,10 @@ public class System {
     }
 
     @ApiOperation(value = "异常", notes = "异常处理")
-    @PostMapping(value = "/error")
-    public ResponseEntity<Result> error(){
-        return Result.error(ResultCode.PARAMETER_ERROR,UNAUTHORIZED);
+    @PostMapping(value = "/clearShriroCache")
+    public ResponseEntity<Result> clearShiroCache(){
+        PrincipalCollection principals = SecurityUtils.getSubject().getPrincipals();
+        myShiroRealm.clearCache(principals);
+        return Result.success();
     }
 }

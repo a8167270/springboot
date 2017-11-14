@@ -19,7 +19,7 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public int save(User demo) {
         userDao.insert(demo);
         return 0;
@@ -49,11 +49,12 @@ public class UserService {
         userDao.delete(id);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void updateUser(User user) {
         int number = userDao.updateUser(user);
-        if (number < 1)
+        if (number < 1) {
             throw new RuntimeException("update fail!");
+        }
     }
 
     public User getUserByName(String name) {

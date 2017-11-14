@@ -14,7 +14,9 @@ public class RedisCacheManager implements CacheManager {
 	private static final Logger logger = LoggerFactory
 			.getLogger(RedisCacheManager.class);
 
-	// fast lookup by name map
+	/**
+	 * fast lookup by name map
+	 */
 	private final ConcurrentMap<String, Cache> caches = new ConcurrentHashMap<String, Cache>();
 
 	private RedisManager redisManager;

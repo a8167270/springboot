@@ -9,7 +9,8 @@ public enum  RoleEnum implements BaseEnum{
     USER(0, "user"),
     VIP(1, "vip"),
     TEACHER(2, "teacher"),
-    EXPERT(3,"expert");
+    EXPERT(3,"expert"),
+    ADMIN(4,"admin");
 
     private int code;
     private String value;

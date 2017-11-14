@@ -1,5 +1,6 @@
 package com.learn.spring.controller;
 
+import com.learn.spring.config.MyShiroRealm;
 import com.learn.spring.entity.Result;
 import com.learn.spring.entity.User;
 import com.learn.spring.enums.ResultCode;
@@ -74,6 +75,8 @@ public class UserController {
 	@ApiOperation(value = "update用户", notes = "根据url的id来删除对象")
 	public ResponseEntity<Result> updateUser(@PathVariable long id,@RequestBody @Validated User user) {
 		userService.updateUser(user);
+		MyShiroRealm shiroRealm = new MyShiroRealm();
+
 		return Result.success(user);
 	}
 
